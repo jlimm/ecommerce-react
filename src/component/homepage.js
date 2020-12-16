@@ -1,4 +1,5 @@
 import React from "react";
+import './hompage.scss'
 
 const HomePage = () => (
   <div className="homepage">
@@ -33,6 +34,7 @@ const HomePage = () => (
           <span className="subtitle">Shop Now</span>
         </div>
       </div>
+      
     </div>
   </div>
 );
