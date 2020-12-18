@@ -1,7 +1,47 @@
 .slideshow-wrapper {
-    background-image: url('https://i.ibb.co/0jqHpnp/sneakers.png');
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom center;
+  background-image: url("https://i.ibb.co/dMFdzH3/20181008-172202.jpg");
+
+  display: flex;
+  height: 100vh;
+  // max-width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+
+  .slideshow-pagedots {
+    color: #1c1b1b;
+    bottom: 28px;
+    right: 24px;
+    left: auto;
+    position: absolute;
+    width: auto;
+    padding: 0;
+    margin: 0;
+
+    .dot {
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      margin: 0 7px;
+      border: 1px solid #1c1b1b;
+      border-width: 2px;
+      transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
+    }
+
+    .dot.active {
+        background-color: black;
+    }
+
+    .dot::before {
+      position: absolute;
+      content: "";
+      top: -6px;
+      right: -6px;
+      left: -6px;
+      bottom: -6px;
+    }
+  }
 }

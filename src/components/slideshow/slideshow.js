@@ -3,7 +3,13 @@ import './slideshow.scss';
 
 const SlideShow = () => (
     <div className="slideshow-wrapper">
-        <h1></h1>
+        <ol className="slideshow-pagedots">
+            <li className="dot active"></li>
+            <li className="dot"></li>
+            <li className="dot"></li>
+            <li className="dot"></li>
+            <li className="dot"></li>
+        </ol>
     </div>
 )
 
