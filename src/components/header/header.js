@@ -6,15 +6,15 @@ import "./header.scss";
 
 class Header extends React.Component {
   handleScrollToElement() {
-    let headerPosition = document.querySelector('.header-wrapper');
-    if (window.scrollY ) {
-      headerPosition.classList.add('active');
+    let headerPosition = document.querySelector(".header-wrapper");
+    if (window.scrollY) {
+      headerPosition.classList.add("active");
     } else {
-      headerPosition.classList.remove('active');
+      headerPosition.classList.remove("active");
     }
   }
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScrollToElement);
+    window.addEventListener("scroll", this.handleScrollToElement);
   }
   render() {
     return (
@@ -32,7 +32,9 @@ class Header extends React.Component {
         {
           <div className="options">
             <Link className="option" to="/shop">
-              SHOP
+              <button className="nav-btn open-btn">
+                <i className="fas fa-shopping-cart"></i>
+              </button>
             </Link>
           </div>
         }
