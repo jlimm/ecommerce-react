@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <div className="header-wrapper">
-      {viewWidth > 1000 && (
+      {viewWidth > 1000 ? (
         <div className="foptions">
           <Link className="foption" to="/shop">
             Shop
@@ -41,22 +41,20 @@ const Header = () => {
             More
           </Link>
         </div>
-      )}
-      {viewWidth < 1000 && (
+      ) : (
         <div className="foptions">
-        <Link className="foption" to="/shop">
-          <button className="nav-btn open-btn">
-            <i className="fas fa-bars"></i>
-          </button>
-        </Link>
-      </div>
+          <Link className="foption" to="/shop">
+            <button className="nav-btn open-btn">
+              <i className="fas fa-bars"></i>
+            </button>
+          </Link>
+        </div>
       )}
-      
 
       <Link className="logo-container" to="/">
         <Logo className="logo" />
       </Link>
-      {viewWidth > 1000 && (
+      {viewWidth > 1000 ? (
         <div className="options">
           <Link className="option" to="/account">
             Account
@@ -68,8 +66,7 @@ const Header = () => {
             Cart
           </Link>
         </div>
-      )}
-      {viewWidth < 1000 && (
+      ) : (
         <div className="options">
           <Link className="option" to="/shop">
             <button className="nav-btn open-btn">

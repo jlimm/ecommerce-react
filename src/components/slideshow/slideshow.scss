@@ -5,6 +5,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top center;
+  transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
 
   .slideshow-pagedots {
     color: #1c1b1b;
