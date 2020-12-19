@@ -22,7 +22,6 @@ const Header = () => {
 
   const handleResize = () => {
     setViewWidth(window.innerWidth);
-    console.log("width :" + viewWidth);
   };
 
   return (
@@ -59,7 +58,7 @@ const Header = () => {
       </Link>
       {viewWidth > 1000 && (
         <div className="options">
-          <Link className="option" to="/shop">
+          <Link className="option" to="/account">
             Account
           </Link>
           <Link className="option" to="/shop">
