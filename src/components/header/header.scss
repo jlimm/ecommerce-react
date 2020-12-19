@@ -1,10 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
 .header-wrapper.active {
-    top: 0;
-    background-color: rgba(245,245,245 ,1);
+  top: 0;
+  background-color: rgba(245, 245, 245, 1);
 }
-
 
 .header-wrapper {
   font-family: "Montserrat", sans-serif;
@@ -15,8 +14,14 @@
   width: 100%;
   height: 90px;
   position: fixed;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   z-index: 1;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  &:hover {
+    background-color: rgba(245, 245, 245, 1);
+  }
 
   .foptions {
     flex: 1 0 0;
@@ -29,6 +34,8 @@
 
     .foption {
       padding: 10px 15px;
+      text-decoration: none;
+      color: #1c1b1b;
     }
   }
 
@@ -51,13 +58,15 @@
 
     .option {
       padding: 10px 15px;
+      text-decoration: none;
+      color: #1c1b1b;
     }
   }
 }
 
 .nav-btn {
-    border:none;
-    background-color: transparent;
-    cursor: pointer;
-    font-size: 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 20px;
 }
