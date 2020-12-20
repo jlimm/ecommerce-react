@@ -20,52 +20,96 @@
   }
 
   .footer-container {
-    //padding: 0 80px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    padding: 0 50px;
+    margin: 0 auto;
 
-    .footer-block {
-      margin-bottom: 50px;
-      padding-left: 40px;
-      padding-right: 40px;
-      flex: 0 1 auto;
-    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-left: -40px;
+      margin-right: -40px;
 
-    .footer-text {
-      margin-top: 0;
-      flex-basis: 460px;
+      .footer-block {
+        margin-bottom: 50px;
+        padding-left: 40px;
+        padding-right: 40px;
+        flex: 0 1 auto;
+      }
 
-      .footer-content {
-        font-size: 14px;
-        font-weight: 400;
+      .footer-text {
+        margin-top: 0;
+        flex-basis: 460px;
+
+        .footer-content {
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+
+      .footer-links {
+        margin-top: 0;
+
+        .footer-linklist {
+          font-size: 14px;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+
+          .linklist-item {
+            position: relative;
+            display: block;
+            margin-bottom: 12px;
+            width: 100%;
+            line-height: 1.5;
+            text-align: left;
+            transition: all 0.2s ease-in-out;
+
+            .link-primary {
+              text-decoration: none;
+              color: inherit;
+            }
+          }
+        }
       }
     }
 
-    .footer-links{
-        margin-top: 0;
+    .footer-aside {
+      margin-top: 80px;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-        .footer-linklist{
-            font-size: 14px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
+      .footer-copyright {
+        display: flex;
+        align-items: center;
+        line-height: normal;
 
-            .linklist-item{
-                position: relative;
-                display: block;
-                margin-bottom: 12px;
-                width: 100%;
-                line-height: 1.5;
-                text-align: left;
-                transition: all 0.2s ease-in-out;
-                
-                .link-primary{
-                    text-decoration: none;
-                    color: inherit;
-                }
-            }
+        .footer-storename {
+          color: #1c1b1b;
+          font-family: Montserrat, sans-serif;
+          font-size: 11px;
+          font-weight: 600;
+          font-style: normal;
+          transition: color 0.2s ease-in-out;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          text-decoration: none;
         }
+      }
+
+      .footer-paymentlist {
+        padding: 0;
+        margin: 0 -8px;
+        border: none;
+
+        .horizontallist-item {
+          display: inline-block;
+          margin: 6px 8px 6px 8px;
+          list-style: none;
+        }
+      }
     }
   }
 }

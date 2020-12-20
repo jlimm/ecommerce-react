@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <div className="header-wrapper">
-      {viewWidth > 1000 ? (
+      {viewWidth > 500 ? (
         <div className="foptions">
           <Link className="foption" to="/shop">
             Shop
@@ -54,7 +54,7 @@ const Header = () => {
       <Link className="logo-container" to="/">
         <Logo className="logo" />
       </Link>
-      {viewWidth > 1000 ? (
+      {viewWidth > 500 ? (
         <div className="options">
           <Link className="option" to="/account">
             Account

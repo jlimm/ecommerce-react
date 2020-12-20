@@ -7,6 +7,7 @@ import HomePage from "./pages/hompage/homepage";
 import ShopPage from "./pages/shop/shop";
 import ScrollToTop from "./components/scrolltotop/scrolltotop";
 import FooterSection from "./components/footer/footer-section";
+import AccountPage from "./pages/accountpage/accountpage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
+        <Route path="/account" component={AccountPage}/>
       </Switch>
       <FooterSection/>
     </ScrollToTop>

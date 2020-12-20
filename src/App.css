@@ -2,3 +2,9 @@ body {
   font-family: 'Open Sans Condensed';
 
 }
+
+.page{
+  padding: 150px 50px;
+  background: #f2f2f2;
+
+}
