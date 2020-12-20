@@ -1,0 +1,39 @@
+.login {
+  max-width: 500px;
+  margin-bottom: 80px;
+  margin-top: 80px;
+
+  .form-login {
+    .form-header {
+      margin-bottom: 24px;
+      text-align: center;
+
+      .title-login {
+        font-size: 20px;
+      }
+
+      .info-login {
+        font-size: 12px;
+      }
+    }
+
+    .form-item {
+      margin-bottom: 15px;
+    }
+
+    .login-center {
+      text-align: center;
+      margin: 24px 0 0 0;
+      font-size: 12px;
+
+      .center-text {
+        color: #6a6a6a;
+      }
+      .register-link {
+        color: inherit;
+        background-color: transparent;
+        text-decoration: none;
+      }
+    }
+  }
+}

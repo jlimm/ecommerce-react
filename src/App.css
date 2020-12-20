@@ -1,10 +1,73 @@
 body {
-  font-family: 'Open Sans Condensed';
-
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #1c1b1b;
+  background: #f2f2f2;
+  line-height: 1.65;
 }
 
-.page{
-  padding: 150px 50px;
+.heading {
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #1c1b1b;
+  -webkit-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.page {
+  min-height: 100vh;
+  padding: 150px 0px;
   background: #f2f2f2;
+}
 
+.container {
+  padding: 0 80px;
+  margin: 0 auto;
+}
+
+.form {
+  width: 100%;
+}
+
+.form-input {
+  -webkit-appearance: none;
+  display: block;
+  padding: 12px 14px;
+  border-radius: 0;
+  border: 1px solid #d2d2d2;
+  width: 100%;
+  line-height: normal;
+  resize: none;
+  -webkit-transition: border-color 0.1s ease-in-out;
+  transition: border-color 0.1s ease-in-out;
+  background: transparent;
+}
+
+.form-label {
+  position: absolute;
+  bottom: calc(100% - 8px);
+  left: 10px;
+  padding: 0 5px;
+  line-height: normal;
+  color: #6a6a6a;
+  font-size: 12px;
+  opacity: 0;
+  background: rgba(242, 242, 242, 0);
+  pointer-events: none;
+  -webkit-transform: translateY(3px);
+  transform: translateY(3px);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
