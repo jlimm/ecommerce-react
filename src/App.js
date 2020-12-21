@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Announcement from "./components/announcement/announcement";
 import "./App.css";
@@ -8,59 +8,64 @@ import ShopPage from "./pages/shop/shop";
 import ScrollToTop from "./components/scrolltotop/scrolltotop";
 import FooterSection from "./components/footer/footer-section";
 import AccountPage from "./pages/accountpage/accountpage";
-import { authService } from "./firebase";
+import { authService, createUserProfileDocument } from "./firebase";
 import Login from "./components/auth/login/login";
 import Register from "./components/auth/register/register";
+import { connect } from "react-redux";
+import { setCurrentUser } from "./redux/user/user-actions";
 
-function App() {
-  const [userObj, setUserObj] = useState(null);
+class App extends React.Component {
+  unsubscribeFromAuth = null;
 
-  useEffect(() => {
-    authService.onAuthStateChanged((user) => {
+  componentDidMount() {
+    const {setCurrentUser}=this.props;
+    this.unsubscribeFromAuth = authService.onAuthStateChanged(async user=>{
       if (user) {
-        setUserObj({
-          displayName: user.displayName,
-          uid: user.uid,
-          updateProfile: (args) => user.updateProfile(args),
+        const userRef = await createUserProfileDocument(user);
+
+        userRef.onSnapshot(snapShot => {
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data()
+          });
         });
-      } else {
-        setUserObj(null);
-        console.log("setuser null!");
+      }else{
+        setCurrentUser(user);
+
       }
-    });
-  }, []);
-  const refreshUser = () => {
-    const user = authService.currentUser;
-    setUserObj({
-      displayName: user.displayName,
-      uid: user.uid,
-      updateProfile: (args) => user.updateProfile(args),
-    });
-  };
 
-  return (
-    <ScrollToTop>
-      <Announcement />
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/shop" component={ShopPage} />
-        <Route exact path="/account">
-          <AccountPage
-            refreshUser={refreshUser}
-            userObj={userObj}
-            isLoggedIn={Boolean(userObj)}
-          />
-        </Route>
-        <Route path="/account/login" component={Login} />
-        <Route path="/account/register"  >
-          <Register refreshUser={refreshUser} userObj={userObj}/>
-        </Route>
+    })
+  }
 
-      </Switch>
-      <FooterSection />
-    </ScrollToTop>
-  );
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
+  render(){
+    return (
+      <ScrollToTop>
+        <Announcement />
+        <Header />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route exact path="/account">
+            <AccountPage />
+          </Route>
+          <Route path="/account/login" component={Login} />
+          <Route path="/account/register">
+            <Register />
+          </Route>
+        </Switch>
+        <FooterSection />
+      </ScrollToTop>
+    );
+  }
+  
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(null, mapDispatchToProps)(App);

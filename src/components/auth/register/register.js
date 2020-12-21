@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { authService, dbService } from "../../../firebase";
+import { authService, createUserProfileDocument, dbService } from "../../../firebase";
 import "./register.scss";
 
 const Register = () => {
   const history = useHistory();
 
-  const [displayName, SetDisplayName] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,7 +18,25 @@ const Register = () => {
       }
     });
   });
-  const handleSubmit = async (event) => {
+
+const handleSubmit = async event => {
+    event.preventDefault();
+    if(isFormValid)
+    {
+        try{
+            const {user} = await authService.createUserWithEmailAndPassword(email, password);
+
+            await createUserProfileDocument(user, {displayName});
+            setDisplayName('');
+            setEmail('');
+            setPassword('');
+        } catch(error){
+            console.log("register:34", error);
+        }
+    }
+}
+
+  /*const handleSubmit = async (event) => {
     event.preventDefault();
     if (isFormValid) {
       await authService
@@ -42,7 +60,7 @@ const Register = () => {
         });
     }
     history.push("/account");
-  };
+  };*/
   const isFormValid = () => {
     if (isFormEmpty) {
       setError("Fill in all fields");
@@ -56,11 +74,11 @@ const Register = () => {
     return !email.length || !password.length || !displayName.length;
   };
 
-  const saveUser = (createdUser) => {
+  /*const saveUser = (createdUser) => {
     return dbService.collection("users").doc(`${createdUser.user.uid}`).set({
       displayName: createdUser.user.displayName,
     });
-  };
+  };*/
 
   const handleChange = (event) => {
     const {
@@ -71,7 +89,7 @@ const Register = () => {
     } else if (name === "password") {
       setPassword(value);
     } else if (name === "displayName") {
-      SetDisplayName(value);
+      setDisplayName(value);
     }
   };
 

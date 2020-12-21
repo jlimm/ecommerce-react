@@ -5,10 +5,11 @@ import { useHistory } from 'react-router-dom';
 
 import "./accountpage.scss";
 import { authService } from "../../firebase";
+import {connect} from "react-redux";
 
-const AccountPage = ({ refreshUser, userObj, isLoggedIn }) => {
+const AccountPage = ({currentUser}) => {
     const history = useHistory();
-
+    console.log(currentUser);
     useEffect(()=>{
         authService.onAuthStateChanged((user)=>{
             if(!user){
@@ -24,15 +25,16 @@ const AccountPage = ({ refreshUser, userObj, isLoggedIn }) => {
   return (
      <div>
         {/*isLoggedIn?(<div>loggedin</div>):(<Redirect to="/account/login"/>)*/}
-        {!isLoggedIn && (<Redirect to="/account/login"/>)}
         <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
         Log Out
-        <p> {userObj.displayName
-            ? `${userObj.displayName}의 Profile`
-            : "Profile"}</p>
+        {currentUser ? <div>{currentUser.displayName}</div>:<div>null</div>}
         </span>   
      </div>
   )
 };
 
-export default AccountPage;
+const mapStateToProps=state=>({
+    currentUser:state.user.currentUser
+})
+
+export default connect(mapStateToProps)(AccountPage);
