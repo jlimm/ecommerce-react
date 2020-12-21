@@ -1,13 +1,35 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import { Link, Redirect, useHistory } from "react-router-dom";
+import { authService } from "../../../firebase";
 import "./login.scss";
 
 const Login = () => {
+    const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState([]);
 
-  const handleSubmit = (event) => {
+  useEffect(()=>{
+      authService.onAuthStateChanged((user)=>{
+          if(user){
+              history.push("/account");
+          }
+      })
+  })
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    if (isFormValid) {
+      await authService
+        .signInWithEmailAndPassword(email, password)
+        .then((signedInUser) => {
+        })
+        .catch((err) => {
+          setErrors(errors.concat(err));
+        });
+    }
+    history.push("/account");
+
   };
 
   const handleChange = (event) => {
@@ -21,43 +43,53 @@ const Login = () => {
     }
   };
 
+  const isFormValid = ({ email, password }) => email && password;
+
+  const displayErrors = errors => 
+      errors.map((error,i)=><p key={i}>{error.message}</p>);
+  
   return (
-    <div className="container login">
-      <form onSubmit={handleSubmit} className="form form-login">
-        <header className="form-header">
-          <h1 className="heading title-login">Login</h1>
-          <p className="info-login">Please enter your e-mail and password:</p>
-        </header>
-        <div className="form-item">
-          <input
-            className="form-input"
-            name="email"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={handleChange}
-            required
-          />
-          <label className="form-label">Email</label>
-        </div>
-        <div className="form-item">
-          <input
-            className="form-input"
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={handleChange}
-            required
-          />
-          <label className="form-label">Password</label>
-        </div>
-        <input type="submit" value="Submit Form" />
-        <div className="login-center">
+    <div className="page login-section">
+      <div className="container login">
+        <form onSubmit={handleSubmit} className="form form-login">
+          <header className="form-header">
+            <h1 className="heading title-login">Login</h1>
+            <p className="info-login">Please enter your e-mail and password:</p>
+          </header>
+          <div className="form-item">
+            <input
+              className="form-input"
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={handleChange}
+              required
+            />
+            <label className="form-label">Email</label>
+          </div>
+          <div className="form-item">
+            <input
+              className="form-input"
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={handleChange}
+              required
+            />
+            <label className="form-label">Password</label>
+          </div>
+          {errors.length>0&& <h3>{displayErrors(errors)}aa</h3>}
+          <input type="submit" value="Submit Form" />
+          <div className="login-center">
             <span className="center-text">Don't have an account? </span>
-            <a href="/account/register" className="register-link">Create one</a>
-        </div>
-      </form>
+            <Link to="/account/register" className="register-link">
+              Create one
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
