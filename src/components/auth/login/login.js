@@ -9,13 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  useEffect(()=>{
-      authService.onAuthStateChanged((user)=>{
-          if(user){
-              history.push("/account");
-          }
-      })
-  })
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();

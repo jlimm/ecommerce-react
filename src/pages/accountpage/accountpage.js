@@ -10,13 +10,7 @@ import {connect} from "react-redux";
 const AccountPage = ({currentUser}) => {
     const history = useHistory();
     console.log(currentUser);
-    useEffect(()=>{
-        authService.onAuthStateChanged((user)=>{
-            if(!user){
-                history.push("/account/login");
-            }
-        })
-    })
+    
 
     const onLogOutClick = () => {
         authService.signOut();

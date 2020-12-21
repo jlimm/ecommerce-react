@@ -11,13 +11,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    authService.onAuthStateChanged((user) => {
-      if (user) {
-        history.push("/account");
-      }
-    });
-  });
+  
 
 const handleSubmit = async event => {
     event.preventDefault();
