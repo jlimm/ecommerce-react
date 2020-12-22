@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import { cartSidebarHidden } from "../../redux/cart/cart-actions";
 
 const CartIcon = ({cartSidebarHidden}) => (
-  <div className="option" onClick={cartSidebarHidden} onChange={cartSidebarHidden}>
+  <div style={{cursor:"pointer"}} className="option" onClick={cartSidebarHidden} onChange={cartSidebarHidden}>
     Cart
   </div>
 );

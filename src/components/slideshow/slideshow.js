@@ -56,7 +56,15 @@ const SlideShow = () => {
         <li id="dot5" className="dot"></li>
       </ol>
       <div onClick={handleScrollButtonClick} className="slideshow-scrollbutton">
-        <i className="fas fa-chevron-down"></i>{" "}
+        <svg className="scrollbtn-arrow" viewBox="0 0 50 50">
+          
+
+          <polyline fill="none" stroke="currentColor" points="0 3 25 27 49 2" strokeWidth="3">
+          </polyline>
+          <polyline fill="none" stroke="#747070" points="0 1 25 25 49 0" strokeWidth="3">
+          </polyline>
+        </svg>
+      {/*<i className="fas fa-chevron-down"></i>{" "}*/}
       </div>
     </div>
   );

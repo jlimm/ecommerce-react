@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import { authService, createUserProfileDocument, dbService } from "../../../firebase";
+import CustomButtom from "../../button/button";
 import "./register.scss";
 
 const Register = () => {
-  const history = useHistory();
 
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,31 +29,6 @@ const handleSubmit = async event => {
     }
 }
 
-  /*const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (isFormValid) {
-      await authService
-        .createUserWithEmailAndPassword(email, password)
-        .then((createdUser) => {
-          createdUser.user
-            .updateProfile({
-              displayName: displayName,
-            })
-            .then(() => {
-              saveUser(createdUser).then(() => {
-                console.log("saved");
-              });
-            })
-            .catch((err) => {
-              setError(err.message);
-            });
-        })
-        .catch((err) => {
-          setError(err.message);
-        });
-    }
-    history.push("/account");
-  };*/
   const isFormValid = () => {
     if (isFormEmpty) {
       setError("Fill in all fields");
@@ -68,11 +42,7 @@ const handleSubmit = async event => {
     return !email.length || !password.length || !displayName.length;
   };
 
-  /*const saveUser = (createdUser) => {
-    return dbService.collection("users").doc(`${createdUser.user.uid}`).set({
-      displayName: createdUser.user.displayName,
-    });
-  };*/
+ 
 
   const handleChange = (event) => {
     const {
@@ -132,7 +102,7 @@ const handleSubmit = async event => {
             <label className="form-label">Password</label>
             {error && <span className="authError">{error}</span>}
           </div>
-          <input type="submit" value="Submit Form" />
+          <CustomButtom type="submit">Create My Account</CustomButtom>
         </form>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { authService } from "../../../firebase";
+import CustomButtom from "../../button/button";
 import "./login.scss";
 
 const Login = () => {
@@ -75,7 +76,7 @@ const Login = () => {
             <label className="form-label">Password</label>
           </div>
           {errors.length>0&& <h3>{displayErrors(errors)}aa</h3>}
-          <input type="submit" value="Submit Form" />
+          <CustomButtom type="submit" >Login</CustomButtom>
           <div className="login-center">
             <span className="center-text">Don't have an account? </span>
             <Link to="/account/register" className="register-link">
