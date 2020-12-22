@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { ReactComponent as Logo } from "../../assets/02.svg";
+import CartIcon from "../cart-icon/cart-icon";
+import CartSidebar from "../cart-sidebar/cart-sidebar";
 import "./header.scss";
 
-const Header = () => {
+const Header = ({ hidden }) => {
   const [viewWidth, setViewWidth] = useState(window.innerWidth);
 
   const handleScrollToElement = () => {
@@ -18,6 +21,11 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScrollToElement, false);
     window.addEventListener("resize", handleResize, false);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollToElement, false);
+      window.removeEventListener("resize", handleResize, false);
+    };
   });
 
   const handleResize = () => {
@@ -62,9 +70,7 @@ const Header = () => {
           <Link className="option" to="/shop">
             Search
           </Link>
-          <Link className="option" to="/shop">
-            Cart
-          </Link>
+          <CartIcon />
         </div>
       ) : (
         <div className="options">
@@ -75,8 +81,13 @@ const Header = () => {
           </Link>
         </div>
       )}
+      {hidden ? null : <CartSidebar />}
     </div>
   );
 };
 
-export default Header;
+const mapStateToProps = ({ cart: { hidden } }) => ({
+  hidden,
+});
+
+export default connect(mapStateToProps)(Header);

@@ -1,0 +1,36 @@
+.nav-btn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height:100vh;
+    transform: translateX(100%);
+    transition-duration: 3s;
+    transition: transform .3s ease-in-out;
+}
+
+.nav.visible{
+    transform: translateX(0%);
+
+}
+
+.nav-white{
+    background-color: #fff;
+    min-width: 350px;
+    padding:40px;
+    box-shadow: 0 2px 10px rgba(54, 54, 54, 0.15);
+    overflow: hidden !important;
+}
+
+.close-btn{
+    opacity: 0.5;
+    position: absolute;
+    top:40px;
+    right:30px
+}
