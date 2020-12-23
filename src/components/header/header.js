@@ -33,6 +33,8 @@ const Header = ({ hidden }) => {
   };
 
   return (
+    <>
+    {hidden ? null : <CartSidebar />}
     <div className="header-wrapper">
       {viewWidth > 500 ? (
         <div className="foptions">
@@ -81,8 +83,9 @@ const Header = ({ hidden }) => {
           </Link>
         </div>
       )}
-      {hidden ? null : <CartSidebar />}
+      
     </div>
+    </>
   );
 };
 

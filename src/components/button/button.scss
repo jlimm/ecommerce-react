@@ -13,6 +13,9 @@
     border:none;
     cursor: pointer;
 
+    display:flex;
+    justify-content: center;
+
     &:hover {
         background-color: white;
         color: black;

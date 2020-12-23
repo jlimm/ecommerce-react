@@ -18,30 +18,28 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const {setCurrentUser}=this.props;
-    this.unsubscribeFromAuth = authService.onAuthStateChanged(async user=>{
+    const { setCurrentUser } = this.props;
+    this.unsubscribeFromAuth = authService.onAuthStateChanged(async (user) => {
       if (user) {
         const userRef = await createUserProfileDocument(user);
 
-        userRef.onSnapshot(snapShot => {
+        userRef.onSnapshot((snapShot) => {
           setCurrentUser({
             id: snapShot.id,
-            ...snapShot.data()
+            ...snapShot.data(),
           });
         });
-      }else{
+      } else {
         setCurrentUser(user);
-
       }
-
-    })
+    });
   }
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
 
-  render(){
+  render() {
     return (
       <ScrollToTop>
         <Announcement />
@@ -49,21 +47,40 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
-          <Route exact path="/account" render={()=>this.props.currentUser?(<AccountPage/>):(<Redirect to='/account/login' />)} />
-          <Route path="/account/login" render={()=>this.props.currentUser?(<Redirect to='/account'/>):(<Login/>)} />
-          <Route path="/account/register" render={()=>this.props.currentUser?(<Redirect to='/account'/>):(<Register/>)} />
-            
+          <Route
+            exact
+            path="/account"
+            render={() =>
+              this.props.currentUser ? (
+                <AccountPage />
+              ) : (
+                <Redirect to="/account/login" />
+              )
+            }
+          />
+          <Route
+            path="/account/login"
+            render={() =>
+              this.props.currentUser ? <Redirect to="/account" /> : <Login />
+            }
+          />
+          <Route
+            path="/account/register"
+            render={() =>
+              this.props.currentUser ? <Redirect to="/account" /> : <Register />
+            }
+          />
         </Switch>
         <FooterSection />
       </ScrollToTop>
     );
   }
-  
 }
 
-const mapStateToProps = ({user:{currentUser}})=> ({
-  currentUser
-})
+const mapStateToProps = ({ user: { currentUser } }) => ({
+  currentUser,
+  
+});
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
