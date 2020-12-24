@@ -13,7 +13,7 @@ const Header = ({ hidden, match }) => {
   
   const handleScrollToElement = () => {
     let headerPosition = document.querySelector(".header-wrapper");
-  
+    
     if (window.scrollY) {
       headerPosition.classList.add("active");
       setIsHeaderAtTheTop(false);
@@ -38,7 +38,7 @@ const Header = ({ hidden, match }) => {
 
   return (
     <>
-      {hidden ? null : <CartSidebar />}
+      {<CartSidebar />}
       <div className="header-wrapper" style={{backgroundColor: match.isExact && isHeaderAtTheTop? "transparent":"white"}}>
         {viewWidth > 500 ? (
           <div className="foptions">
