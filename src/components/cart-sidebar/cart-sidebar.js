@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { cartSidebarHidden } from "../../redux/cart/cart-actions";
 import Announcement from "../announcement/announcement";
@@ -8,15 +8,25 @@ import CartItem from "../cart-item/cart-item";
 import "./cart-sidebar.scss";
 
 const CartSidebar = ({ cartSidebarHidden, cartItems, hidden }) => {
+  const [totalPrice, setTotalPrice] = useState(0);
+
   const ref = useRef();
 
   useEffect(() => {
+    let sum=0;
+    cartItems.forEach((cartItem) => {
+ 
+      
+      sum += cartItem.quantity * cartItem.price;
+ 
+
+      setTotalPrice(sum);
+    })
     document.addEventListener("click", handleOutsideClick);
     if(!hidden){
       document.querySelector("body").style.overflow = "hidden";
     } else{
       document.querySelector("body").style.overflow = "";
-
     }
     return () => {
       document.removeEventListener("click", handleOutsideClick);
@@ -25,11 +35,11 @@ const CartSidebar = ({ cartSidebarHidden, cartItems, hidden }) => {
 
 
   const handleOutsideClick = (event) => {
-    console.log(document.querySelector("body").style.overflow);
     if (!hidden && ref.current && !ref.current.contains(event.target)) {
       cartSidebarHidden();
     }
   };
+
   return (
     <div className={`nav ${hidden? "": "visible "}nav-white` } ref={ref}>
       <div className="cart-header" >
@@ -50,7 +60,7 @@ const CartSidebar = ({ cartSidebarHidden, cartItems, hidden }) => {
       </div>
 
       <div className="cart-footer">
-        {<CustomButtom type="submit">Checkout</CustomButtom>}
+        {<CustomButtom type="submit">Checkout {totalPrice}</CustomButtom>}
       </div>
     </div>
   );

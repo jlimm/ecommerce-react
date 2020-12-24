@@ -13,6 +13,7 @@ import Login from "./components/auth/login/login";
 import Register from "./components/auth/register/register";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user-actions";
+import PageOveray from "./pages/page-overay/page-overay";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -42,6 +43,7 @@ class App extends React.Component {
   render() {
     return (
       <ScrollToTop>
+        <PageOveray />
         <Announcement />
         <Header />
         <Switch>
@@ -79,7 +81,6 @@ class App extends React.Component {
 
 const mapStateToProps = ({ user: { currentUser } }) => ({
   currentUser,
-  
 });
 
 const mapDispatchToProps = (dispatch) => ({

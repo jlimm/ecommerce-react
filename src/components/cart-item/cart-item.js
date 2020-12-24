@@ -2,13 +2,15 @@ import React from 'react';
 
 import './cart-item.scss';
 
-const CartItem = ({item : {imageUrl, price, name, quantity} }) => {
+const CartItem = ({item : {imageUrl, price, name, quantity, title} }) => {
     return(
         <div className="cart-item">
-            <img src={imageUrl} alt="item"/>
+            <div className="cart-image" style={{backgroundImage:`url(${imageUrl})`}}  />
             <div className="item-details">
-                <span className="name" >{name}</span>
-                <span className="price" >{quantity} x {price}</span>
+                <div className="name Heading" >{name}</div>
+                <div className="name Heading" >{title}</div>
+
+                <div className="price heading" >{quantity} x {price}</div>
 
             </div>
         </div>

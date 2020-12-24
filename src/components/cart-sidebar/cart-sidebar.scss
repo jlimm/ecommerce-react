@@ -19,7 +19,8 @@
 .nav.visible {
   transform: translateX(0%);
   overflow-y:hidden ;
-  
+  z-index: 3;
+  opacity: 1;
 
 }
 
@@ -58,6 +59,11 @@
   
       padding-left: 30px;
       padding-right: 30px;
+
+      .cart-itemlist{
+        flex:1;
+        padding-bottom: 30px;
+      }
     }
   }
 
