@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
+import {createStructuredSelector} from 'reselect';
 
 import { ReactComponent as Logo } from "../../assets/02.svg";
 import CartIcon from "../cart-icon/cart-icon";

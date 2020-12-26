@@ -14,6 +14,8 @@ import Register from "./components/auth/register/register";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user-actions";
 import PageOveray from "./pages/page-overay/page-overay";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "./redux/user/user-selectors";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -79,8 +81,8 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user: { currentUser } }) => ({
-  currentUser,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({

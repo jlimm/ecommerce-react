@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import { cartSidebarHidden } from "../../redux/cart/cart-actions";
-import { selectCartHidden, selectCartItems } from "../../redux/cart/cart-selectors";
+import {
+  selectCartHidden,
+  selectCartItems,
+} from "../../redux/cart/cart-selectors";
 import Announcement from "../announcement/announcement";
 import CustomButtom from "../button/button";
 import CartItem from "../cart-item/cart-item";
@@ -14,26 +18,22 @@ const CartSidebar = ({ cartSidebarHidden, cartItems, hidden }) => {
   const ref = useRef();
 
   useEffect(() => {
-    let sum=0;
+    let sum = 0;
     cartItems.forEach((cartItem) => {
- 
-      
       sum += cartItem.quantity * cartItem.price;
- 
 
       setTotalPrice(sum);
-    })
+    });
     document.addEventListener("click", handleOutsideClick);
-    if(!hidden){
+    if (!hidden) {
       document.querySelector("body").style.overflow = "hidden";
-    } else{
+    } else {
       document.querySelector("body").style.overflow = "";
     }
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
   });
-
 
   const handleOutsideClick = (event) => {
     if (!hidden && ref.current && !ref.current.contains(event.target)) {
@@ -42,8 +42,8 @@ const CartSidebar = ({ cartSidebarHidden, cartItems, hidden }) => {
   };
 
   return (
-    <div className={`nav ${hidden? "": "visible "}nav-white` } ref={ref}>
-      <div className="cart-header" >
+    <div className={`nav ${hidden ? "" : "visible "}nav-white`} ref={ref}>
+      <div className="cart-header">
         <span className="heading cart-title">Cart {cartItems.length}</span>
         <button onClick={cartSidebarHidden} className="nav-btn close-btn">
           <i className="fas fa-times"></i>
@@ -67,9 +67,9 @@ const CartSidebar = ({ cartSidebarHidden, cartItems, hidden }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  cartItems:selectCartItems(state),
-  hidden:selectCartHidden(state)
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems,
+  hidden: selectCartHidden,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -18,6 +18,10 @@ code {
     monospace;
 }
 
+*:focus {
+  outline: none;
+}
+
 
 *, *:before, *:after {
   -webkit-box-sizing: border-box !important;

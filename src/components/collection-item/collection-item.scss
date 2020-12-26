@@ -20,6 +20,8 @@
     position: absolute;
     top:255px;
     display: none;
+    overflow: hidden;
+  white-space: nowrap;
   }
 
   &:hover{
