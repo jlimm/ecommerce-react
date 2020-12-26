@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { cartSidebarHidden } from "../../redux/cart/cart-actions";
+import { selectCartHidden, selectCartItems } from "../../redux/cart/cart-selectors";
 import Announcement from "../announcement/announcement";
 import CustomButtom from "../button/button";
 import CartItem from "../cart-item/cart-item";
@@ -66,8 +67,9 @@ const CartSidebar = ({ cartSidebarHidden, cartItems, hidden }) => {
   );
 };
 
-const mapStateToProps = ({ cart: { hidden, cartItems } }) => ({
-  hidden, cartItems
+const mapStateToProps = (state) => ({
+  cartItems:selectCartItems(state),
+  hidden:selectCartHidden(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
