@@ -44,12 +44,14 @@ const CartSidebar = ({ cartSidebarHidden, cartItems, hidden }) => {
   return (
     <div className={`nav ${hidden ? "" : "visible "}nav-white`} ref={ref}>
       <div className="cart-header">
-        <span className="heading cart-title">Cart {cartItems.length}</span>
+        <span className="heading cart-title">Cart</span>
         <button onClick={cartSidebarHidden} className="nav-btn close-btn">
           <i className="fas fa-times"></i>
         </button>
       </div>
+      
       <div className="cart-main">
+      {cartItems.length ?(
         <div className="cart-content">
           <Announcement />
           <div className="cart-itemlist">
@@ -58,11 +60,17 @@ const CartSidebar = ({ cartSidebarHidden, cartItems, hidden }) => {
             ))}
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="cart-empty Heading">Your Cart is empty</div>
+      )}
 
+      </div>
+      {cartItems.length ?(
       <div className="cart-footer">
         {<CustomButtom type="submit">Checkout {totalPrice}</CustomButtom>}
-      </div>
+      </div>):null}
+
+
     </div>
   );
 };
