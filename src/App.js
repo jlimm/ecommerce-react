@@ -16,6 +16,7 @@ import { setCurrentUser } from "./redux/user/user-actions";
 import PageOveray from "./pages/page-overay/page-overay";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user-selectors";
+import CheckOutPage from "./pages/checkout/checkout";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -51,6 +52,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
+          <Route path="/checkout" component={CheckOutPage}/>
           <Route
             exact
             path="/account"
