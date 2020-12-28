@@ -26,5 +26,56 @@
       text-overflow: ellipsis;
       font-weight: 500;
     }
+
+    .actions {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      .quantity-selector {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid #d2d2d2;
+        white-space: nowrap;
+
+        .quantity-btn {
+          padding: 7px 14px 8px 14px;
+          cursor: pointer;
+          display: inline-block;
+
+          .icon-minus {
+            width: 10px;
+            height: 10px;
+            stroke-width: 1.5px;
+            vertical-align: -1px;
+          }
+          .icon-plus {
+            width: 10px;
+            height: 10px;
+            stroke-width: 1.5px;
+            vertical-align: -1px;
+          }
+        }
+
+        .current-quantity {
+          font-size: 12px;
+          display: inline-block;
+          width: 20px;
+          padding: 0;
+         
+          text-align: center;
+          letter-spacing: normal;
+          background: transparent;
+          border: none;
+        }
+      }
+    }
+
+    .remove-button{
+      cursor: pointer;
+      font-size: 9px;
+    }
   }
 }

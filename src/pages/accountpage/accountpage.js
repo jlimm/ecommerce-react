@@ -1,6 +1,4 @@
-import React, {useEffect} from "react";
-import { Link, Redirect, Route, Switch } from "react-router-dom";
-import Login from "../../components/auth/login/login";
+import React from "react";
 import { useHistory } from 'react-router-dom';
 
 import "./accountpage.scss";

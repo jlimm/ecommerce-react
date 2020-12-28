@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
@@ -16,8 +16,8 @@ import "./cart-sidebar.scss";
 
 const CartSidebar = ({ cartSidebarHidden, cartItems, hidden, history,total }) => {
   const ref = useRef();
+  
   useEffect(() => {
-    
     document.addEventListener("click", handleOutsideClick);
     if (!hidden) {
       document.querySelector("body").style.overflow = "hidden";
