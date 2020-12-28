@@ -6,6 +6,7 @@ import { cartSidebarHidden } from "../../redux/cart/cart-actions";
 import {
   selectCartHidden,
   selectCartItems,
+  selectCartTotal,
 } from "../../redux/cart/cart-selectors";
 import Announcement from "../announcement/announcement";
 import CustomButtom from "../button/button";
@@ -13,18 +14,10 @@ import CartItem from "../cart-item/cart-item";
 
 import "./cart-sidebar.scss";
 
-const CartSidebar = ({ cartSidebarHidden, cartItems, hidden, history }) => {
-  const [totalPrice, setTotalPrice] = useState(0);
-
+const CartSidebar = ({ cartSidebarHidden, cartItems, hidden, history,total }) => {
   const ref = useRef();
-
   useEffect(() => {
-    let sum = 0;
-    cartItems.forEach((cartItem) => {
-      sum += cartItem.quantity * cartItem.price;
-
-      setTotalPrice(sum);
-    });
+    
     document.addEventListener("click", handleOutsideClick);
     if (!hidden) {
       document.querySelector("body").style.overflow = "hidden";
@@ -42,10 +35,6 @@ const CartSidebar = ({ cartSidebarHidden, cartItems, hidden, history }) => {
     }
   };
 
-  const handleOnClickCheckOut = () => {
-    history.push("/checkout");
-    cartSidebarHidden();
-  };
 
   return (
     <div className={`nav ${hidden ? "" : "visible "}nav-white`} ref={ref}>
@@ -72,8 +61,11 @@ const CartSidebar = ({ cartSidebarHidden, cartItems, hidden, history }) => {
       </div>
       {cartItems.length ? (
         <div className="cart-footer">
-          <CustomButtom onClick={handleOnClickCheckOut}>
-            Checkout {totalPrice}
+          <CustomButtom onClick={()=>{
+            history.push("/checkout");
+            cartSidebarHidden();
+          }}>
+            Checkout {total}
           </CustomButtom>
         </div>
       ) : null}
@@ -84,6 +76,7 @@ const CartSidebar = ({ cartSidebarHidden, cartItems, hidden, history }) => {
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   hidden: selectCartHidden,
+  total: selectCartTotal
 });
 
 const mapDispatchToProps = (dispatch) => ({
