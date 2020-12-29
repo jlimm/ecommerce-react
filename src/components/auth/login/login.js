@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { authService } from "../../../firebase";
 import CustomButtom from "../../button/button";
 import "./login.scss";

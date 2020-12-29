@@ -1,10 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { clearItemFromCart } from "../../redux/cart/cart-actions";
+import {
+  addItem,
+  clearItemFromCart,
+  removeItem,
+} from "../../redux/cart/cart-actions";
 import "./cart-item.scss";
 
-const CartItem = ({ item, clearItem }) => {
-    const {imageUrl, price, name, quantity, title}=item;
+const CartItem = ({ item, clearItem, addItem, removeItem }) => {
+  const { imageUrl, price, name, quantity, title } = item;
   return (
     <div className="cart-item">
       <div
@@ -17,7 +21,10 @@ const CartItem = ({ item, clearItem }) => {
         <div className="price heading">$ {price}</div>
         <div className="actions Heading">
           <div className="quantity-selector">
-            <div className="quantity-btn minus">
+            <div
+              className="quantity-btn minus"
+              onClick={() => removeItem(item)}
+            >
               <svg
                 className="icon-minus"
                 role="presentation"
@@ -32,8 +39,8 @@ const CartItem = ({ item, clearItem }) => {
                 ></path>
               </svg>
             </div>
-            <div className="current-quantity">{quantity}</div>
-            <div className="quantity-btn plus">
+            <div className="current-quantity" draggable="true">{quantity}</div>
+            <div className="quantity-btn plus" onClick={() => addItem(item)}>
               <svg
                 className="icon-plus"
                 role="presentation"
@@ -51,7 +58,14 @@ const CartItem = ({ item, clearItem }) => {
               </svg>
             </div>
           </div>
-          <div className="remove-button Heading" onClick={()=>clearItem(item)}> Remove</div>
+          <div
+          draggable="true"
+            className="remove-button Heading"
+            onClick={() => clearItem(item)}
+          >
+            {" "}
+            Remove
+          </div>
         </div>
       </div>
     </div>
@@ -60,6 +74,8 @@ const CartItem = ({ item, clearItem }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   clearItem: (item) => dispatch(clearItemFromCart(item)),
+  addItem: (item) => dispatch(addItem(item)),
+  removeItem: (item) => dispatch(removeItem(item)),
 });
 
 export default connect(null, mapDispatchToProps)(CartItem);

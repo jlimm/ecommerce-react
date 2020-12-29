@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { authService, createUserProfileDocument, dbService } from "../../../firebase";
+import { authService, createUserProfileDocument } from "../../../firebase";
 import CustomButtom from "../../button/button";
 import "./register.scss";
 
