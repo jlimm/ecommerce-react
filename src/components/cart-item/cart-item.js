@@ -39,7 +39,7 @@ const CartItem = ({ item, clearItem, addItem, removeItem }) => {
                 ></path>
               </svg>
             </div>
-            <div className="current-quantity" draggable="true">{quantity}</div>
+            <div className="current-quantity">{quantity}</div>
             <div className="quantity-btn plus" onClick={() => addItem(item)}>
               <svg
                 className="icon-plus"
@@ -59,11 +59,9 @@ const CartItem = ({ item, clearItem, addItem, removeItem }) => {
             </div>
           </div>
           <div
-          draggable="true"
             className="remove-button Heading"
             onClick={() => clearItem(item)}
           >
-            {" "}
             Remove
           </div>
         </div>

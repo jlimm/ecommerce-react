@@ -32,9 +32,9 @@ const CheckOutPage = ({ cartItems, total }) => {
       {cartItems.map(cartItem => (
           <CheckOutItem key={cartItem.id} cartItem={cartItem}/>
       ))}
-      <duv className="total">
+      <div className="total">
         <span>TOTAL: ${total}</span>
-      </duv>
+      </div>
     </div>
   );
 };
