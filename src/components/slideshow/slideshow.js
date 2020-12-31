@@ -20,7 +20,7 @@ const SlideShow = () => {
   
   const handleScrollButtonClick = () => {
     var location = document.querySelector(".section-featured-collection").offsetTop;
-    var menuHeight = document.querySelector(".header-wrapper").offsetHeight;
+    var menuHeight = document.getElementById("Header-Container").offsetHeight;
     window.scrollTo({ top: location - menuHeight, behavior: "smooth" });
   };
 

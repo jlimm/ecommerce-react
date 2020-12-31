@@ -1,13 +1,13 @@
 import React from "react";
 import FeaturedCollection from "../../components/featured-collection/featured-collection";
 import SlideShow from "../../components/slideshow/slideshow";
-import './hompage.scss'
+import {HomePageContainer} from './homepage.styles';
 
 const HomePage = () => (
-  <div className="homepage">
+  <HomePageContainer>
     <SlideShow/>
     <FeaturedCollection/>
-  </div>
+  </HomePageContainer>
 );
 
 export default HomePage;

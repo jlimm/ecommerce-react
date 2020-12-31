@@ -1,27 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/02.svg";
 import CartIcon from "../cart-icon/cart-icon";
 import CartSidebar from "../cart-sidebar/cart-sidebar";
 import "./header.scss";
+import {
+  HeaderContainer,
+  HeaderFlexItem,
+  HorizontalListItem,
+  LogoContainer,
+} from "./header.styles";
 
 const Header = ({ hidden, match }) => {
+  const ref = useRef();
   const [viewWidth, setViewWidth] = useState(window.innerWidth);
   const [isHeaderAtTheTop, setIsHeaderAtTheTop] = useState(true);
-  
-  const handleScrollToElement = () => {
-    let headerPosition = document.querySelector(".header-wrapper");
-    
-    if (window.scrollY) {
-      headerPosition.classList.add("active");
-      setIsHeaderAtTheTop(false);
-    } else {
-      headerPosition.classList.remove("active");
-      setIsHeaderAtTheTop(true);
-    }
-  };
+
   useEffect(() => {
+    console.log(ref);
     window.addEventListener("scroll", handleScrollToElement, false);
     window.addEventListener("resize", handleResize, false);
 
@@ -31,6 +28,14 @@ const Header = ({ hidden, match }) => {
     };
   }, []);
 
+  const handleScrollToElement = () => {
+    if (window.scrollY) {
+      setIsHeaderAtTheTop(false);
+    } else {
+      setIsHeaderAtTheTop(true);
+    }
+  };
+
   const handleResize = () => {
     setViewWidth(window.innerWidth);
   };
@@ -38,55 +43,48 @@ const Header = ({ hidden, match }) => {
   return (
     <>
       {<CartSidebar />}
-      <div className="header-wrapper" style={{backgroundColor: match.isExact && isHeaderAtTheTop? "transparent":"white"}}>
+      <HeaderContainer ref={ref}
+        style={{
+          backgroundColor:
+            match.isExact && isHeaderAtTheTop ? "transparent" : "white",
+          top: isHeaderAtTheTop ? "" : "0",
+        }} id="Header-Container"
+      >
         {viewWidth > 500 ? (
-          <div className="foptions">
-            <Link className="foption" to="/shop">
-              Shop
-            </Link>
-            <Link className="foption" to="/shop">
-              Learn
-            </Link>
-            <Link className="foption" to="/shop">
-              Press
-            </Link>
-            <Link className="foption" to="/shop">
-              More
-            </Link>
-          </div>
+          <HeaderFlexItem>
+            <HorizontalListItem to="/shop">Shop</HorizontalListItem>
+            <HorizontalListItem to="/shop">Learn</HorizontalListItem>
+            <HorizontalListItem to="/shop">Press</HorizontalListItem>
+            <HorizontalListItem to="/shop">More</HorizontalListItem>
+          </HeaderFlexItem>
         ) : (
-          <div className="foptions">
-            <Link className="foption" to="/shop">
+          <HeaderFlexItem>
+            <HorizontalListItem to="/shop">
               <button className="nav-btn open-btn">
                 <i className="fas fa-bars"></i>
               </button>
-            </Link>
-          </div>
+            </HorizontalListItem>
+          </HeaderFlexItem>
         )}
-
-        <Link className="logo-container" to="/">
-          <Logo className="logo" />
-        </Link>
+        <LogoContainer to="/">
+          <Logo />
+        </LogoContainer>
         {viewWidth > 500 ? (
-          <div className="options">
-            <Link className="option" to="/account">
-              Account
-            </Link>
-            <Link className="option" to="/shop">
-              Search
-            </Link>
+          <HeaderFlexItem>
+            <HorizontalListItem to="/account">Account</HorizontalListItem>
+            <HorizontalListItem to="/shop">Search</HorizontalListItem>
             <CartIcon />
-          </div>
+          </HeaderFlexItem>
         ) : (
-          <div className="options">
-            <Link className="option" to="/shop">
+          <HeaderFlexItem>
+            <HorizontalListItem to="/shop">
               <button className="nav-btn open-btn">
                 <i className="fas fa-shopping-cart"></i>
               </button>
-            </Link>
-          </div>
+            </HorizontalListItem>
+          </HeaderFlexItem>
         )}
-      </div>
+      </HeaderContainer>
     </>
   );
 };
