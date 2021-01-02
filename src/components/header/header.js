@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/02.svg";
 import CartIcon from "../cart-icon/cart-icon";
 import CartSidebar from "../cart-sidebar/cart-sidebar";

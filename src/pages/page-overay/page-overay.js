@@ -1,19 +1,10 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import "./page-overay.scss"
-const PageOveray = ({hidden}) => {
-    useEffect(() => {
-        let pageoveray =document.querySelector(".pageoveray");
+import {PageOverayContainer} from './page-overay.styles';
 
-        if(!hidden){
-            pageoveray.classList.add("visible");
-        }else{
-            pageoveray.classList.remove("visible");
-        }
-      
-    })
+const PageOveray = (props) => {
     return (
-        <div className="pageoveray"/>
+        <PageOverayContainer {...props}/>
     );
 }
 const mapStateToProps = ({ cart: { hidden } }) => ({

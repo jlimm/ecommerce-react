@@ -27,14 +27,6 @@ export const LogoContainer = styled(Link)`
   z-index: auto;
 `;
 
-const HeaderFlexItemStyles = css`
-  flex: 1 0 0;
-  min-width: 10%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-`;
-
 export const HeaderFlexItem = styled.div`
   flex: 1 0 0;
   min-width: 10%;

@@ -21,8 +21,10 @@ const CartSidebar = ({ cartSidebarHidden, cartItems, hidden, history,total }) =>
     document.addEventListener("click", handleOutsideClick);
     if (!hidden) {
       document.querySelector("body").style.overflow = "hidden";
+
     } else {
       document.querySelector("body").style.overflow = "";
+
     }
     return () => {
       document.removeEventListener("click", handleOutsideClick);
