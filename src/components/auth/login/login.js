@@ -1,30 +1,26 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { authService } from "../../../firebase";
 import CustomButtom from "../../button/button";
-import "./login.scss";
+import { LoginCenter, LoginCenterRegisterLink, LoginCenterText, LoginContainer, LoginForm, LoginFormHeader, LoginFormInfo, LoginFormInput, LoginFormItem, LoginFormTitle } from "./login.styles";
 
 const Login = () => {
-    const history = useHistory();
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
-  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (isFormValid) {
       await authService
         .signInWithEmailAndPassword(email, password)
-        .then((signedInUser) => {
-        })
+        .then((signedInUser) => {})
         .catch((err) => {
           setErrors(errors.concat(err));
         });
     }
     history.push("/account");
-
   };
 
   const handleChange = (event) => {
@@ -40,20 +36,18 @@ const Login = () => {
 
   const isFormValid = ({ email, password }) => email && password;
 
-  const displayErrors = errors => 
-      errors.map((error,i)=><p key={i}>{error.message}</p>);
-  
+  const displayErrors = (errors) =>
+    errors.map((error, i) => <p key={i}>{error.message}</p>);
+
   return (
-    <div className="page login-section">
-      <div className="container login">
-        <form onSubmit={handleSubmit} className="form form-login">
-          <header className="form-header">
-            <h1 className="heading title-login">Login</h1>
-            <p className="info-login">Please enter your e-mail and password:</p>
-          </header>
-          <div className="form-item">
-            <input
-              className="form-input"
+    <LoginContainer>
+        <LoginForm onSubmit={handleSubmit} >
+          <LoginFormHeader>
+            <LoginFormTitle>Login</LoginFormTitle>
+            <LoginFormInfo>Please enter your e-mail and password:</LoginFormInfo>
+          </LoginFormHeader>
+          <LoginFormItem>
+            <LoginFormInput
               name="email"
               type="email"
               placeholder="Email"
@@ -61,11 +55,9 @@ const Login = () => {
               onChange={handleChange}
               required
             />
-            <label className="form-label">Email</label>
-          </div>
-          <div className="form-item">
-            <input
-              className="form-input"
+          </LoginFormItem>
+          <LoginFormItem>
+            <LoginFormInput
               name="password"
               type="password"
               placeholder="Password"
@@ -73,19 +65,18 @@ const Login = () => {
               onChange={handleChange}
               required
             />
-            <label className="form-label">Password</label>
-          </div>
-          {errors.length>0&& <h3>{displayErrors(errors)}aa</h3>}
-          <CustomButtom type="submit" >Login</CustomButtom>
-          <div className="login-center">
-            <span className="center-text">Don't have an account? </span>
-            <Link to="/account/register" className="register-link">
+          </LoginFormItem>
+          {errors.length > 0 && <h3 className="authError">{displayErrors(errors)}aa</h3>}
+          <CustomButtom type="submit">Login</CustomButtom>
+          <LoginCenter>
+            <LoginCenterText>Don't have an account? </LoginCenterText>
+            <LoginCenterRegisterLink to="/account/register" >
               Create one
-            </Link>
-          </div>
-        </form>
-      </div>
-    </div>
+            </LoginCenterRegisterLink>
+          </LoginCenter>
+        </LoginForm>
+     
+    </LoginContainer>
   );
 };
 

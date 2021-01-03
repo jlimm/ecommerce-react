@@ -1,33 +1,40 @@
 import React, { useState } from "react";
 import { authService, createUserProfileDocument } from "../../../firebase";
 import CustomButtom from "../../button/button";
-import "./register.scss";
+import {
+  RegisterContainer,
+  RegisterForm,
+  RegisterFormHeader,
+  RegisterFormTitle,
+  RegisterFormInfo,
+  RegisterFormItem,
+  RegisterFormInput
+} from "./register.styles";
 
 const Register = () => {
-
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  
-
-const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if(isFormValid)
-    {
-        try{
-            const {user} = await authService.createUserWithEmailAndPassword(email, password);
+    if (isFormValid) {
+      try {
+        const { user } = await authService.createUserWithEmailAndPassword(
+          email,
+          password
+        );
 
-            await createUserProfileDocument(user, {displayName});
-            setDisplayName('');
-            setEmail('');
-            setPassword('');
-        } catch(error){
-            console.log("register:34", error);
-        }
+        await createUserProfileDocument(user, { displayName });
+        setDisplayName("");
+        setEmail("");
+        setPassword("");
+      } catch (error) {
+        console.log("register:34", error);
+      }
     }
-}
+  };
 
   const isFormValid = () => {
     if (isFormEmpty) {
@@ -41,8 +48,6 @@ const handleSubmit = async event => {
   const isFormEmpty = ({ email, password, displayName }) => {
     return !email.length || !password.length || !displayName.length;
   };
-
- 
 
   const handleChange = (event) => {
     const {
@@ -58,54 +63,48 @@ const handleSubmit = async event => {
   };
 
   return (
-    <div className="page login-section">
-      <div className="container login">
-        <form onSubmit={handleSubmit} className="form form-login">
-          <header className="form-header">
-            <h1 className="heading title-login">Register</h1>
-            <p className="info-login">Please fill in the information below:</p>
-          </header>
-          <div className="form-item">
-            <input
-              className="form-input"
-              name="displayName"
-              type="text"
-              placeholder="User Name"
-              value={displayName}
-              onChange={handleChange}
-              required
-            />
-            <label className="form-label">DisplayName</label>
-          </div>
-          <div className="form-item">
-            <input
-              className="form-input"
-              name="email"
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={handleChange}
-              required
-            />
-            <label className="form-label">Email</label>
-          </div>
-          <div className="form-item">
-            <input
-              className="form-input"
-              name="password"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={handleChange}
-              required
-            />
-            <label className="form-label">Password</label>
-            {error && <span className="authError">{error}</span>}
-          </div>
-          <CustomButtom type="submit">Create My Account</CustomButtom>
-        </form>
-      </div>
-    </div>
+    <RegisterContainer>
+      <RegisterForm onSubmit={handleSubmit}>
+        <RegisterFormHeader>
+          <RegisterFormTitle>Register</RegisterFormTitle>
+          <RegisterFormInfo>
+            Please fill in the information below:
+          </RegisterFormInfo>
+        </RegisterFormHeader>
+        <RegisterFormItem>
+          <RegisterFormInput
+            name="displayName"
+            type="text"
+            placeholder="User Name"
+            value={displayName}
+            onChange={handleChange}
+            required
+          />
+        </RegisterFormItem>
+        <RegisterFormItem>
+          <RegisterFormInput
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleChange}
+            required
+          />
+        </RegisterFormItem>
+        <RegisterFormItem>
+          <RegisterFormInput
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={handleChange}
+            required
+          />
+          {error && <span className="authError">{error}</span>}
+        </RegisterFormItem>
+        <CustomButtom type="submit">Create My Account</CustomButtom>
+      </RegisterForm>
+    </RegisterContainer>
   );
 };
 

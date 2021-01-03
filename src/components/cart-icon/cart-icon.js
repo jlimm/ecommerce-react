@@ -2,16 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { cartSidebarHidden } from "../../redux/cart/cart-actions";
 import { selectCartItemsCount } from "../../redux/cart/cart-selectors";
-import './cart-icon.scss';
+import { CartIconContainer } from "./cart-icon.styles";
 
 const CartIcon = ({ cartSidebarHidden, itemCount }) => (
-  <div
-    style={{ cursor: "pointer" }}
-    className="option"
+  <CartIconContainer
     onClick={cartSidebarHidden}
   >
       Cart {itemCount > 0 && `(${itemCount})`}
-  </div>
+  </CartIconContainer>
 );
 
 const mapStateToProps = (state) => ({

@@ -1,12 +1,12 @@
 import React from "react";
-import "./announcement.scss";
+import { AnnouncementContainer,AnnouncementContent } from "./announcement.styles";
 
 const Announcement = () => (
-  <div className="announcement-wrapper">
-    <div className="announcement">
+  <AnnouncementContainer>
+    <AnnouncementContent>
       ENJOY 30% OFF ALL ITEMS NOW! USE CODE: REACT30
-    </div>
-  </div>
+    </AnnouncementContent>
+  </AnnouncementContainer>
 );
 
 export default Announcement;
