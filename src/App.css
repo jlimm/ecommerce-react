@@ -8,6 +8,8 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
+
+
 .page {
   min-height: 88vh;
   padding: 150px 0px;
@@ -55,7 +57,7 @@
 }
 
 /*.Container*/
-.Container{
+.Container {
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -68,16 +70,11 @@
 
 /*.section-spacingNormal*/
 .section-spacingNormal {
-    padding: 50px 0;
-    margin: 50px 0;
+  padding: 50px 0;
+  margin: 50px 0;
 }
 
-@media screen and (min-width: 1000px) {
-  .section-spacingNormal {
-    padding: 80px 0;
-    margin: 80px 0;
-  }
-}
+
 
 /*.sectionHeader*/
 .SectionHeader {

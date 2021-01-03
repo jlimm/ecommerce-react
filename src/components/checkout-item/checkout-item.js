@@ -28,13 +28,11 @@ const CheckOutItem = ({ cartItem, clearItem }) => {
       <CheckOutItemActions>
         <QuantitySelector item={cartItem} />
         <RemoveBtn
-          className="remove-button"
           onClick={() => clearItem(cartItem)}
         >
           REMOVE
         </RemoveBtn>
       </CheckOutItemActions>
-
       <TotalPrice className="Heading">${price * quantity} USD</TotalPrice>
     </CheckOutItemContainer>
   );
